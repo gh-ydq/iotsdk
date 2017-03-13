@@ -1,7 +1,7 @@
-package main.java.com.qdigo.iotsdk;
+package com.qdigo.iotsdk;
 
-import main.java.com.qdigo.iotsdk.dto.pg.PGPacketDto;
-import main.java.com.qdigo.iotsdk.impl.CmdServiceImpl;
+import com.qdigo.iotsdk.dto.pg.PGPacketDto;
+import com.qdigo.iotsdk.impl.CmdServiceImpl;
 
 public class Test {
 	private static CmdServiceImpl impl = new CmdServiceImpl(); 

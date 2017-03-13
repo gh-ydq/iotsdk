@@ -1,4 +1,4 @@
-package main.java.com.qdigo.iotsdk;
+package com.qdigo.iotsdk;
 
 import java.util.Arrays;
 

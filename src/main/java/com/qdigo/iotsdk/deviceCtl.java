@@ -1,8 +1,5 @@
-package main.java.com.qdigo.iotsdk;
+package com.qdigo.iotsdk;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.UnknownHostException;;
 
 public class deviceCtl {
 

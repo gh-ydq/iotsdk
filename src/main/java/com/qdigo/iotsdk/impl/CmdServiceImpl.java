@@ -1,40 +1,39 @@
-package main.java.com.qdigo.iotsdk.impl;
+package com.qdigo.iotsdk.impl;
 
-
-import main.java.com.qdigo.iotsdk.Connection;
-import main.java.com.qdigo.iotsdk.api.CmdService;
-import main.java.com.qdigo.iotsdk.dto.pc.PCPacketDto;
-import main.java.com.qdigo.iotsdk.dto.pg.PGPacketDto;
-import main.java.com.qdigo.iotsdk.dto.ph.PHPacketDto;
-import main.java.com.qdigo.iotsdk.dto.pl.PLPacketDto;
-import main.java.com.qdigo.iotsdk.service.PCService;
-import main.java.com.qdigo.iotsdk.service.PGService;
-import main.java.com.qdigo.iotsdk.service.PHService;
-import main.java.com.qdigo.iotsdk.service.PLService;
+import com.qdigo.iotsdk.Connection;
+import com.qdigo.iotsdk.api.CmdService;
+import com.qdigo.iotsdk.dto.pc.PCPacketDto;
+import com.qdigo.iotsdk.dto.pg.PGPacketDto;
+import com.qdigo.iotsdk.dto.ph.PHPacketDto;
+import com.qdigo.iotsdk.dto.pl.PLPacketDto;
+import com.qdigo.iotsdk.service.PCService;
+import com.qdigo.iotsdk.service.PGService;
+import com.qdigo.iotsdk.service.PHService;
+import com.qdigo.iotsdk.service.PLService;
 
 public class CmdServiceImpl implements CmdService {
 
 	public void sendPGData(PGPacketDto pgPacketDto) {
 		
 		byte[] bytes = PGService.buildPGDataAray(pgPacketDto);
-		Connection.getInstance().SendCmd(bytes);
+		Connection.getInstance(pgPacketDto.getIp(),pgPacketDto.getPort()).SendCmd(bytes);
 	}
 	
 	public void sendPLData(PLPacketDto plPacketDto) {
 		byte[] bytes = PLService.buildPLDataAray(plPacketDto);
-		Connection.getInstance().SendCmd(bytes);
+		Connection.getInstance(plPacketDto.getIp(),plPacketDto.getPort()).SendCmd(bytes);
 		
 	}
 
 	public void sendPHData(PHPacketDto phPacketDto) {
 		byte[] bytes = PHService.buildPHDataAray(phPacketDto);
-		Connection.getInstance().SendCmd(bytes);
+		Connection.getInstance(phPacketDto.getIp(),phPacketDto.getPort()).SendCmd(bytes);
 		
 	}
 
 	public void sendPCData(PCPacketDto pcPacketDto) {
 		byte[] bytes = PCService.buildPCDataAray(pcPacketDto);
-		Connection.getInstance().SendCmd(bytes);
+		Connection.getInstance(pcPacketDto.getIp(),pcPacketDto.getPort()).SendCmd(bytes);
 		
 	}
 	
