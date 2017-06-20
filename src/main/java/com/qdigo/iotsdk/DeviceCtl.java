@@ -1,9 +1,11 @@
-package main.java.com.qdigo.iotsdk;
+package com.qdigo.iotsdk;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import main.java.com.qdigo.iotsdk.constant.CmdEnum;;
+import com.qdigo.iotsdk.CmdBuilder;
+import com.qdigo.iotsdk.Connection;
+import com.qdigo.iotsdk.constant.CmdEnum;;
 
 public class DeviceCtl {
 	private Logger logger = LoggerFactory.getLogger(DeviceCtl.class);

@@ -1,4 +1,4 @@
-package main.java.com.qdigo.iotsdk.constant;
+package com.qdigo.iotsdk.constant;
 
 public enum CmdEnum {
 	CMD_START((char)3,(char)1,"1","点火"),

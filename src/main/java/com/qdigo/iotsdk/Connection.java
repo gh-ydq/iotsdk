@@ -17,7 +17,7 @@ public class Connection {
 	private final static String portKey = "port";
 	private static String DOMAIN_NAME = "192.168.2.221";
 	private static Logger logger = LoggerFactory.getLogger(Connection.class);
-	
+	private static int PORT = 8088;
 	private static int TIME_OUT = 5000;
 	private static final int RETRY_TIMES = 5;
 	
@@ -166,3 +166,4 @@ public class Connection {
 		 }
 	}
 }
+
