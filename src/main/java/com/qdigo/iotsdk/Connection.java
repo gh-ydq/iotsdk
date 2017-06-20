@@ -8,12 +8,15 @@ import java.util.Properties;
 
 import com.qdigo.iotsdk.util.PropertyUtil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Connection {
 	private final static String filePath = "config.properties";
 	private final static String ipKey = "ip";
 	private final static String portKey = "port";
 	private static String DOMAIN_NAME = "192.168.2.221";
-	private static int PORT = 8088;
+	private static Logger logger = LoggerFactory.getLogger(Connection.class);
 	
 	private static int TIME_OUT = 5000;
 	private static final int RETRY_TIMES = 5;
@@ -37,8 +40,7 @@ public class Connection {
 		} catch (UnknownHostException ex) {
 			ex.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("创建socket连接异常",e);
 		}
 
 	}
@@ -93,7 +95,8 @@ public class Connection {
 	   try{ 
 	    socket.sendUrgentData(0xFF);//锟斤拷锟斤拷1锟斤拷锟街节的斤拷锟斤拷锟斤拷锟捷ｏ拷默锟斤拷锟斤拷锟斤拷拢锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锌锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷荽锟斤拷锟斤拷锟接帮拷锟斤拷锟斤拷锟酵拷锟� 
 	    return false; 
-	   }catch(Exception se){ 
+	   }catch(Exception se){
+		logger.error("判断socket连接是否关闭异常",se);
 	    return true; 
 	   } 
 	}  
@@ -103,12 +106,11 @@ public class Connection {
 		try {
 			m_sock.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		  logger.error("销毁socket连接是异常",e);
 		}
 	}
 	
-	public boolean SendCmd(byte[] cmd) {
+	public boolean sendCmd(byte[] cmd) {
 		
 		try {
 			OutputStream os = m_sock.getOutputStream();
@@ -130,13 +132,8 @@ public class Connection {
 				return false;
 			}
 			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("发送socket连接命令是异常",e);
 			return false;
 		}
 	}
@@ -144,7 +141,7 @@ public class Connection {
 	/**
 	 * 锟斤拷锟斤拷目锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟絀P锟斤拷址
 	 */
-	public void SetDOMAIN_NAME(String domain_name){
+	public void setDOMAIN_NAME(String domain_name){
 		 if (domain_name != null && domain_name != ""){
 			 DOMAIN_NAME = domain_name;
 		 }
@@ -154,7 +151,7 @@ public class Connection {
 	/**
 	 * 锟斤拷锟斤拷目锟斤拷锟斤拷锟斤拷锟斤拷丝冢锟侥拷锟轿�8088锟剿匡拷
 	 */
-	public void SetPORT(int port){
+	public void setPORT(int port){
 		 if (port >0){
 			 PORT = port;
 		 }
@@ -163,7 +160,7 @@ public class Connection {
 	/**
 	 * 锟斤拷锟矫筹拷时时锟戒，默锟斤拷为5锟斤拷
 	 */
-	public void SetTIME_OUT(int time_out){
+	public void setTIME_OUT(int time_out){
 		 if (time_out >0){
 			 TIME_OUT = time_out;
 		 }

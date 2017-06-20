@@ -1,7 +1,8 @@
 package com.qdigo.iotsdk.service;
 
-import com.qdigo.iotsdk.dto.pc.PCPacketDto;
 import com.qdigo.iotsdk.util.NumberToByteArray;
+
+import main.java.com.qdigo.iotsdk.dto.pc.PCPacketDto;
 
 public class PCService {
 	public static byte[] buildPCDataAray(PCPacketDto pcPacketDto){
