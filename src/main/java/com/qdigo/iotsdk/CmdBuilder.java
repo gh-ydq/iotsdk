@@ -26,7 +26,7 @@ public class CmdBuilder {
 			return this;
 		}
 		
-		public Builder seq(char val) {
+		public Builder seq(byte val) {
 			seq = val;
 			return this;
 		}

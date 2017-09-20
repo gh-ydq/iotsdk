@@ -5,7 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import com.qdigo.iotsdk.CmdBuilder;
 import com.qdigo.iotsdk.Connection;
-import com.qdigo.iotsdk.constant.CmdEnum;;
+import com.qdigo.iotsdk.constant.CmdEnum;
+import com.qdigo.iotsdk.util.CmdSeqUtil;;
 
 public class DeviceCtl {
 	private Logger logger = LoggerFactory.getLogger(DeviceCtl.class);
@@ -21,7 +22,7 @@ public class DeviceCtl {
 		logger.info("设备开始点火imei={}",imei);
 		CmdBuilder builder = new CmdBuilder.Builder()
 				.imei(imei)
-				.seq(CmdEnum.CMD_START.getSeq())
+				.seq(CmdSeqUtil.gneratorCmdSeq())
 				.cmd(CmdEnum.CMD_START.getCmd())
 				.param(CmdEnum.CMD_START.getParam()).build();
 		byte[]  cmd = builder.toCmd();
@@ -38,7 +39,7 @@ public class DeviceCtl {
 		logger.info("设备开始熄火imei={}",imei);
 		CmdBuilder builder = new CmdBuilder.Builder()
 				.imei(imei)
-				.seq(CmdEnum.CMD_STOP.getSeq())
+				.seq(CmdSeqUtil.gneratorCmdSeq())
 				.cmd(CmdEnum.CMD_STOP.getCmd())
 				.param(CmdEnum.CMD_STOP.getParam()).build();
 		byte[]  cmd = builder.toCmd();
@@ -56,7 +57,7 @@ public class DeviceCtl {
 	 */
 	public boolean SetPTIME(long imei,int pTime) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(7).param(String.valueOf(pTime)+",0").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(7).param(String.valueOf(pTime)+",0").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -73,7 +74,7 @@ public class DeviceCtl {
 	 */
 	public boolean SetHTIME(long imei,int hTime) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(7).param("0," + String.valueOf(hTime)).build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(7).param("0," + String.valueOf(hTime)).build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -89,7 +90,7 @@ public class DeviceCtl {
 	 */
 	public boolean Reboot(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(8).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(8).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -106,7 +107,7 @@ public class DeviceCtl {
 	 */
 	public boolean SetSensitivity(long imei,int grade) {
 		String param = String.valueOf((char) grade);
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(12).param(param).build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(12).param(param).build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -122,7 +123,7 @@ public class DeviceCtl {
 	 */
 	public boolean Lock(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(24).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(24).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -137,7 +138,7 @@ public class DeviceCtl {
 	 */
 	public boolean Unlock(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(24).param("0").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(24).param("0").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -153,7 +154,7 @@ public class DeviceCtl {
 	 */
 	public boolean AutoLockOn(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(27).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(27).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -169,7 +170,7 @@ public class DeviceCtl {
 	 */
 	public boolean AutoLockOff(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(27).param("0").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(27).param("0").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -185,7 +186,7 @@ public class DeviceCtl {
 	 */
 	public boolean ReqHearbeat(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(30).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(30).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -200,7 +201,7 @@ public class DeviceCtl {
 	 */
 	public boolean SeekStart(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(41).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(41).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -215,7 +216,7 @@ public class DeviceCtl {
 	 */
 	public boolean SeekEnd(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(41).param("0").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(41).param("0").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -231,7 +232,7 @@ public class DeviceCtl {
 	 */
 	public boolean Fire(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(42).param("1").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(42).param("1").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -246,7 +247,7 @@ public class DeviceCtl {
 	 */
 	public boolean Shutdown(long imei) {
 		
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(42).param("0").build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(42).param("0").build();
 		
 		byte[]  cmd = builder.toCmd();
 
@@ -264,7 +265,7 @@ public class DeviceCtl {
 	public boolean SetStall(long imei,int grade){
 		
 		String param = String.valueOf((char) grade);
-		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((char)i_seq).cmd(12).param(param).build();
+		CmdBuilder builder = new CmdBuilder.Builder().imei(imei).seq((byte)i_seq).cmd(12).param(param).build();
 		
 		byte[]  cmd = builder.toCmd();
 		
