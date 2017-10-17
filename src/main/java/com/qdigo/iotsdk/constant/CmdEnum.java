@@ -3,6 +3,7 @@ package com.qdigo.iotsdk.constant;
 public enum CmdEnum {
 	CMD_START((char)3,(char)1,"1","点火"),
 	CMD_STOP((char)3,(char)2,"0","熄火"),
+	CMD_SENSOR((char)12,(char)2,"","传感器设置"),
 	;	
 	
 	

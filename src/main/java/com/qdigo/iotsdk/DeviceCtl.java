@@ -3,8 +3,6 @@ package com.qdigo.iotsdk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.qdigo.iotsdk.CmdBuilder;
-import com.qdigo.iotsdk.Connection;
 import com.qdigo.iotsdk.constant.CmdEnum;
 import com.qdigo.iotsdk.util.CmdSeqUtil;;
 
@@ -12,6 +10,25 @@ public class DeviceCtl {
 	private Logger logger = LoggerFactory.getLogger(DeviceCtl.class);
 	static int i_seq = 0;
 	
+	
+	/**
+	 * 传感器设置
+	 * 
+	 * @param imei 设备号
+	 * @param cmdEnum 命令枚举类
+	 * @param param  参数
+	 * @return
+	 */
+	public boolean sensor(long imei,CmdEnum cmdEnum,String param) {
+		logger.info("传感器设置imei={},cmdEnum={},param={}",imei,cmdEnum,param);
+		CmdBuilder builder = new CmdBuilder.Builder()
+				.imei(imei)
+				.seq(CmdSeqUtil.gneratorCmdSeq())
+				.cmd(cmdEnum.getCmd())
+				.param(param).build();
+		byte[]  cmd = builder.toCmd();
+		return Connection.getInstance().sendCmd(cmd);
+	}
 
 	/**
 	 * 设备点火
